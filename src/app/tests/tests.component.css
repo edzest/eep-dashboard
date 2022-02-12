@@ -1,4 +1,6 @@
 .test-card-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }
@@ -11,5 +13,11 @@
 @media (max-width: 1000px) {
     .test-card-container {
       display: block;
+    }
+
+    .test-card {
+        margin: 0 auto;
+        max-width: 500px;
+        margin-bottom: 32px;
     }
   }
