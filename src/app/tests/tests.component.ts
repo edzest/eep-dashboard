@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestInfo } from '../test-info.model';
+import { TestService } from '../test.service';
 
 @Component({
   selector: 'app-tests',
@@ -8,23 +9,12 @@ import { TestInfo } from '../test-info.model';
 })
 export class TestsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private testService: TestService) { }
 
-  sampleTestInfo: TestInfo = {
-    'testId': 12,
-    'testTitle': 'PMP Revision Test',
-    'testInstructions': 'Lorem Ipsum ....'
-  };
-
-  sampleTestInfo2: TestInfo = {
-    'testId': 13,
-    'testTitle': 'Test number 2',
-    'testInstructions': 'Lorem Ipsum ....'
-  }
-
-  allTests: Array<TestInfo> | undefined = [this.sampleTestInfo, this.sampleTestInfo2, this.sampleTestInfo, this.sampleTestInfo2, this.sampleTestInfo];
+  allTests: Array<TestInfo> | undefined = [];
 
   ngOnInit(): void {
+    this.testService.getAllTests().subscribe((data: Array<TestInfo>) => this.allTests = data)
   }
 
   takeTest(testId: number) {
