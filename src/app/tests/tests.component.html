@@ -1,1 +1,5 @@
-<app-test-info-card [testInfo]="testInfo" (takeTest)="takeTest($event)"></app-test-info-card>
+<div class="test-card-container">
+    <div *ngFor="let testInfo of allTests" class="test-card">
+        <app-test-info-card [testInfo]="testInfo" (takeTest)="takeTest($event)"></app-test-info-card>
+    </div>
+</div>

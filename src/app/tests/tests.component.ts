@@ -10,11 +10,19 @@ export class TestsComponent implements OnInit {
 
   constructor() { }
 
-  testInfo: TestInfo | undefined = {
+  sampleTestInfo: TestInfo = {
     'testId': 12,
     'testTitle': 'PMP Revision Test',
     'testInstructions': 'Lorem Ipsum ....'
   };
+
+  sampleTestInfo2: TestInfo = {
+    'testId': 13,
+    'testTitle': 'Test number 2',
+    'testInstructions': 'Lorem Ipsum ....'
+  }
+
+  allTests: Array<TestInfo> | undefined = [this.sampleTestInfo, this.sampleTestInfo2];
 
   ngOnInit(): void {
   }

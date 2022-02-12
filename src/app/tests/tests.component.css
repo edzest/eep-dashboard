@@ -1,0 +1,15 @@
+.test-card-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.test-card {
+    flex: 1;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 1000px) {
+    .test-card-container {
+      display: block;
+    }
+  }
