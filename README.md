@@ -1,18 +1,22 @@
 # EepDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+This is the UI Dashboard for EEP. It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 
-## Code scaffolding
+## Build and test on local 
+Run `ng build` to build the projecct. The build artifacts will be stored in the `dist/eep-dashboard` directory.
+Run `npm run local-server` to host the app on a local lite-server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Deploy on firebase
+Only project admins have this access
+Run `ng build --aot`
+Run `firebase deploy`
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Webapp URL: https://eep-dashboard.web.app/ 
+This is the test URL which will be used before we go to production.
 
 ## Running unit tests
 
@@ -24,4 +28,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Reach out to the person who introduced you to this project :)
