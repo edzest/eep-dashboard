@@ -1,0 +1,10 @@
+<mat-card class="test-info-card">
+    <mat-card-subtitle>Test ID: {{testInfo?.testId}}</mat-card-subtitle>
+    <mat-card-title>{{testInfo?.testTitle}}</mat-card-title>
+    <mat-card-content>
+        <p>{{testInfo?.testInstructions}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="onButtonClick()">TAKE TEST</button>
+    </mat-card-actions>
+</mat-card>
