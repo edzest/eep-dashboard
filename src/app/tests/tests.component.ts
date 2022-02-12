@@ -22,7 +22,7 @@ export class TestsComponent implements OnInit {
     'testInstructions': 'Lorem Ipsum ....'
   }
 
-  allTests: Array<TestInfo> | undefined = [this.sampleTestInfo, this.sampleTestInfo2];
+  allTests: Array<TestInfo> | undefined = [this.sampleTestInfo, this.sampleTestInfo2, this.sampleTestInfo, this.sampleTestInfo2, this.sampleTestInfo];
 
   ngOnInit(): void {
   }

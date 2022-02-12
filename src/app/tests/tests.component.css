@@ -1,13 +1,15 @@
 .test-card-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
 }
 
 .test-card {
-    flex: 1;
-    margin-bottom: 32px;
+    /* margin: 16px 8px 16px 8px; */
+    min-width: 300px;
 }
 
 @media (max-width: 1000px) {
