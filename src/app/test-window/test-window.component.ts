@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 import { TestInfo } from '../test-info.model';
 
@@ -17,7 +18,7 @@ export class TestWindowComponent implements OnInit {
     'testId': 12
   }
 
-  constructor(public testDialog: MatDialog) { }
+  constructor(public testDialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.openTestDialog();
@@ -29,7 +30,11 @@ export class TestWindowComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed: ${result}`);
+      if (result === undefined || result === false) {
+        this.router.navigate(['/home']);
+      } else {
+        console.log(`Dialog closed: ${result}`);
+      }
     });
   }
 

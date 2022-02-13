@@ -9,6 +9,6 @@
   <p>{{data.instructions}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
   <button mat-button [mat-dialog-close]="studentName" cdkFocusInitial>Start Test</button>
 </mat-dialog-actions>
