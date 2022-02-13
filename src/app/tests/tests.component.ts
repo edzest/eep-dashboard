@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TestInfo } from '../test-info.model';
 import { TestService } from '../test.service';
 
@@ -9,7 +10,7 @@ import { TestService } from '../test.service';
 })
 export class TestsComponent implements OnInit {
 
-  constructor(private testService: TestService) { }
+  constructor(private testService: TestService, private router: Router) { }
 
   allTests: Array<TestInfo> | undefined = [];
 
@@ -18,7 +19,7 @@ export class TestsComponent implements OnInit {
   }
 
   takeTest(testId: number) {
-    console.log('Calling test id ' + testId);
+    this.router.navigate(['/test', testId]);
   }
 
 }

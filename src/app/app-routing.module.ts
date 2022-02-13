@@ -6,7 +6,7 @@ import { TestWindowComponent } from './test-window/test-window.component';
 
 const routes: Routes = [
   { path: 'home', component: TestsComponent },
-  { path: 'test', component: TestWindowComponent },
+  { path: 'test/:id', component: TestWindowComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
 
