@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>PMP Revision Test</h2>
+<h2 mat-dialog-title>{{data.title}}</h2>
 <mat-dialog-content class="mat-typography">
   <p>
     <mat-form-field appearance="fill">
@@ -6,8 +6,7 @@
       <input matInput [(ngModel)]="studentName">
     </mat-form-field>
   </p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sequi reiciendis nobis, voluptatum, modi voluptas expedita,
-     vero similique aspernatur exercitationem quis doloribus vel eius? Debitis saepe placeat suscipit adipisci sed?</p>
+  <p>{{data.instructions}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>

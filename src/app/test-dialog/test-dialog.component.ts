@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TestInfo } from '../test-info.model';
 
 @Component({
   selector: 'app-test-dialog',
@@ -8,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class TestDialogComponent implements OnInit {
 
   studentName: string = "";
-  
-  constructor() { }
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TestInfo) { }
 
   ngOnInit(): void {
   }
