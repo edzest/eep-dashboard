@@ -1,0 +1,19 @@
+<div>
+    <div class="header">
+        <h4>QUESTION 1</h4>
+        <h4>CORRECT</h4>
+    </div>
+    <div>
+        <label id="current-question-label">{{questionTxt}}</label>
+        <mat-radio-group
+            aria-labelledby="question-label"
+            class="options-radio-group"
+            >
+            <mat-radio-button class="options-radio-button" *ngFor="let option of options" 
+            [value]="option" [checked]="option == this.selectedOption" disabled>
+                <span class="option-radio-label">{{option}}</span>
+            </mat-radio-button>
+        </mat-radio-group>
+        <h4>Correct Answer: option 2</h4>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+.test-score {
+    display: block;
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.summary h4 {
+    color: #0000008a;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
 import { Router } from '@angular/router';
+import { scan } from 'rxjs';
 import { CurrentTest } from '../current-test';
 import { QuestionSet, TestBody } from '../test-body.model';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
@@ -18,7 +19,6 @@ export class TestWindowComponent implements OnInit {
 
   testInfo: TestInfo | undefined;
   currentQuestionSet: QuestionSet | undefined;
-  testBody: TestBody = this.testService.getTestById();
   currentTest: CurrentTest | undefined;
 
   currentSelectedOption: string | undefined;
@@ -40,6 +40,11 @@ export class TestWindowComponent implements OnInit {
       this.testInfo = currentTestInfo;
     }
     this.openTestDialog();
+    this.testService.getTestById(this.testInfo.testId).subscribe((testBody) => {
+      // todo: can I inject this using ng's DI??
+      this.currentTest = new CurrentTest(testBody);
+      console.log('loaded current test body');
+    });
   }
 
   openTestDialog() {
@@ -52,9 +57,6 @@ export class TestWindowComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         console.log(`Dialog closed: ${result}`);
-        this.testBody = this.testService.getTestById();
-        // todo: this will change to observable
-        this.currentTest = new CurrentTest(this.testBody);
         this.initializeTest();
       }
     });

@@ -20,6 +20,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TestInfoCardComponent } from './test-info-card/test-info-card.component';
 import { TestWindowComponent } from './test-window/test-window.component';
 import { TestDialogComponent } from './test-dialog/test-dialog.component';
+import { TestResultComponent } from './test-result/test-result.component';
+import { TestSummaryItemComponent } from './test-summary-item/test-summary-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TestDialogComponent } from './test-dialog/test-dialog.component';
     ToolbarComponent,
     TestInfoCardComponent,
     TestWindowComponent,
-    TestDialogComponent
+    TestDialogComponent,
+    TestResultComponent,
+    TestSummaryItemComponent
   ],
   imports: [
     BrowserModule,
