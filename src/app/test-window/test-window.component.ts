@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { QuestionSet } from '../test-body.model';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 import { TestInfo } from '../test-info.model';
 import { TestStateService } from '../test-state.service';
@@ -13,6 +14,8 @@ import { TestStateService } from '../test-state.service';
 export class TestWindowComponent implements OnInit {
 
   testInfo: TestInfo | undefined;
+  currentQuestionSet: QuestionSet | undefined;
+
   currentSelectedOption: string | undefined;
   currentOptions: Array<string> = ["Option 1", "Option 2", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eius vero repellendus qui nesciunt! \
   Fuga maxime ex voluptate odit accusamus eveniet aut impedit et voluptatibus, 3", "Option 4"]
@@ -47,6 +50,15 @@ export class TestWindowComponent implements OnInit {
         console.log(`Dialog closed: ${result}`);
       }
     });
+  }
+
+
+  next() {
+
+  }
+
+  previous() {
+    
   }
 
 }
