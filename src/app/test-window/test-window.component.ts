@@ -13,6 +13,9 @@ import { TestStateService } from '../test-state.service';
 export class TestWindowComponent implements OnInit {
 
   testInfo: TestInfo | undefined;
+  currentSelectedOption: string | undefined;
+  currentOptions: Array<string> = ["Option 1", "Option 2", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eius vero repellendus qui nesciunt! \
+  Fuga maxime ex voluptate odit accusamus eveniet aut impedit et voluptatibus, 3", "Option 4"]
 
   constructor(public testDialog: MatDialog, private router: Router,
               private testStateService: TestStateService) { }

@@ -1,0 +1,38 @@
+.test-window {
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 4px;
+    padding: 24px;
+}
+
+.test-window-header {
+    display: flex;
+    justify-content: space-between;
+    color: #0000008a;
+    padding-bottom: 8px 0;
+}
+
+.options-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 32px 0;
+    align-items: flex-start;
+}
+
+.options-radio-button {
+    margin: 8px;
+}
+
+.option-radio-label {
+    white-space: normal;
+}
+
+.test-window-buttons {
+    display: flex;
+}
+.test-window-buttons button {
+    width: 100%;
+    margin: 8px;
+}
+  
