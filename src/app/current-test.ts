@@ -1,3 +1,4 @@
+import { Inject, Injectable } from "@angular/core";
 import { QuestionSet, TestBody } from "./test-body.model";
 
 /**
@@ -18,13 +19,19 @@ export class CurrentTest {
 
     private getQuestionSetsFromTestBody(): Array<QuestionSet> {
         let questionSets: Array<QuestionSet> = [];
+        const totalSection = this.testBody.sections.length;
+
         for (let section of this.testBody.sections) {
             let sectionNumber: number = section.sectionId;
+            const totalQuestion = section.questions.length;
+
             for (let question of section.questions) {
-                let questionNumber: number = question.questionId;
+                let questionNumber: number = question.questionId; 
                 let questionSet: QuestionSet = {
                     sectionNumber,
                     questionNumber,
+                    totalSection,
+                    totalQuestion,
                     questionTxt: question.questionTxt,
                     options: question.options
                 };

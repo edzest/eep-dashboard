@@ -30,5 +30,7 @@ export interface QuestionSet {
     options: Array<String>;
     questionNumber: number;
     sectionNumber: number;
+    totalQuestion: number;
+    totalSection: number;
     selectedOption?: string;
 }

@@ -1,22 +1,23 @@
 <div class="test-window">
     <div class="test-window-header">
-        <p>SECTION 1/3</p>
-        <p>QUESTION 1/10</p>
+        <p>QUESTION {{currentQuestionSet?.questionNumber}}/{{currentQuestionSet?.totalQuestion}}</p>
+        <p>SECTION {{currentQuestionSet?.sectionNumber}}/{{currentQuestionSet?.totalSection}}</p>
     </div>
     <div class="test-window-main">
-        <label id="current-question-label">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eius vero repellendus qui nesciunt! 
-            Fuga maxime ex voluptate odit accusamus eveniet aut impedit et voluptatibus, itaque harum praesentium, dolorum similique?</label>
+        <label id="current-question-label">{{currentQuestionSet?.questionTxt}}</label>
         <mat-radio-group
             aria-labelledby="current-question-label"
             class="options-radio-group"
             [(ngModel)]="currentSelectedOption">
-            <mat-radio-button class="options-radio-button" *ngFor="let option of currentOptions" [value]="option">
+            <mat-radio-button class="options-radio-button" *ngFor="let option of currentQuestionSet?.options" 
+            [value]="option" (change)="onOptionSelect($event)" [checked]="option == this.currentQuestionSet?.selectedOption">
                 <span class="option-radio-label">{{option}}</span>
             </mat-radio-button>
         </mat-radio-group>
     </div>
     <div class="test-window-buttons">
-        <button mat-stroked-button>Previous</button>
-        <button mat-stroked-button color="primary">Next</button>
+        <button mat-stroked-button (click)="previous()" [disabled]="currentTest?.isFirstQuestion()">Previous</button>
+        <button mat-stroked-button color="primary" (click)="next()" *ngIf="!currentTest?.isLastQuestion()">Next</button>
+        <button mat-stroked-button color="primary" (click)="submit()" *ngIf="currentTest?.isLastQuestion()">Submit Test</button>
     </div>
 </div>

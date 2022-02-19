@@ -78,6 +78,8 @@ fdescribe('CurrentTest', () => {
         ],
         questionNumber: 1,
         sectionNumber: 1,
+        totalSection: 2,
+        totalQuestion: 2
       },
       {
         questionTxt: "Question 12",
@@ -89,6 +91,8 @@ fdescribe('CurrentTest', () => {
         ],
         questionNumber: 2,
         sectionNumber: 1,
+        totalSection: 2,
+        totalQuestion: 2
       },
       {
         questionTxt: "Question 21",
@@ -100,6 +104,8 @@ fdescribe('CurrentTest', () => {
         ],
         questionNumber: 1,
         sectionNumber: 2,
+        totalSection: 2,
+        totalQuestion: 2
       },
       {
         questionTxt: "Question 22",
@@ -110,7 +116,9 @@ fdescribe('CurrentTest', () => {
           "option 40"
         ],
         questionNumber: 2,
-        sectionNumber: 2
+        sectionNumber: 2,
+        totalSection: 2,
+        totalQuestion: 2
       }
     ];
 
