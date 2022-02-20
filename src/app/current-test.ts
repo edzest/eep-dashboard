@@ -1,71 +1,43 @@
-import { Inject, Injectable } from "@angular/core";
-import { QuestionSet, TestBody } from "./test-body.model";
+import { TestBody, TestQuestion } from "./test-body.model";
 
 /**
  * Stores the current test properties and provides an API to navigate the questions of the current test and store selected option
  */
 export class CurrentTest {
     private testBody: TestBody;
-    currentQuestionSetIndex: number = 0;
-    questionSets: Array<QuestionSet> = [];
+    testId: number;
+    currentQuestionIndex: number = 0;
 
     constructor(testBody: TestBody) {
         this.testBody = testBody;
-        this.questionSets = this.getQuestionSetsFromTestBody();
-        if (this.questionSets.length == 0) {
-            throw Error("Question Sets is empty");
-        }
+        this.testId = testBody.testId;
     }
 
-    private getQuestionSetsFromTestBody(): Array<QuestionSet> {
-        let questionSets: Array<QuestionSet> = [];
-        const totalSection = this.testBody.sections.length;
-
-        for (let section of this.testBody.sections) {
-            let sectionNumber: number = section.sectionId;
-            const totalQuestion = section.questions.length;
-
-            for (let question of section.questions) {
-                let questionNumber: number = question.questionId; 
-                let questionSet: QuestionSet = {
-                    sectionNumber,
-                    questionNumber,
-                    totalSection,
-                    totalQuestion,
-                    questionTxt: question.questionTxt,
-                    options: question.options
-                };
-                questionSets.push(questionSet);
-            }
-        }
-        return questionSets;
+    getCurrentQuestion(): TestQuestion {
+        return this.testBody.questions[this.currentQuestionIndex];
     }
 
-    getCurrentQuestionSet(): QuestionSet {
-        return this.questionSets[this.currentQuestionSetIndex];
-    }
-
-    getNextQuestionSet(): QuestionSet {
-        this.currentQuestionSetIndex++;
-        return this.getCurrentQuestionSet();
+    getNextQuestion(): TestQuestion {
+        this.currentQuestionIndex++;
+        return this.getCurrentQuestion();
     }
 
     isLastQuestion(): boolean {
-        return this.currentQuestionSetIndex == this.questionSets.length - 1; 
+        return this.currentQuestionIndex == this.testBody.questions.length - 1; 
     }
 
 
-    getPrevQuestionSet(): QuestionSet {
-        this.currentQuestionSetIndex--;
-        return this.getCurrentQuestionSet();
+    getPrevQuestion(): TestQuestion {
+        this.currentQuestionIndex--;
+        return this.getCurrentQuestion();
     }
 
     isFirstQuestion(): boolean {
-        return this.currentQuestionSetIndex == 0;
+        return this.currentQuestionIndex == 0;
     }
 
     setSelectedOption(selectedAnswer: string) {
-        let currentQuestionSet = this.getCurrentQuestionSet();
-        currentQuestionSet.selectedOption = selectedAnswer;
+        let currentQuestion = this.getCurrentQuestion();
+        currentQuestion.selectedOption = selectedAnswer;
     }
 }

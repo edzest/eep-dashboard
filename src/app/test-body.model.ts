@@ -5,32 +5,57 @@ export interface TestBody {
     testId: number;
     title: string;
     instructions: string;
-    sections: Array<Section>;
+    questions: Array<TestQuestion>;
 }
 
-export interface Section {
-    sectionId: number;
-    sectionName: string;
-    questions: Array<Question>;
-}
-
-export interface Question {
+export interface TestQuestion {
     questionId: number;
     questionTxt: string;
     options: Array<String>;
+    selectedOption?: string;
 }
 
 
 /**
- * QuestionSet interface represents a Question and its related properties. It'll mainly be used to display the
- * current question of the test
+ * Test Evaluation Request Body - contains selected answer for each question
  */
-export interface QuestionSet {
-    questionTxt: string;
-    options: Array<String>;
-    questionNumber: number;
-    sectionNumber: number;
-    totalQuestion: number;
-    totalSection: number;
-    selectedOption?: string;
+export interface TestEvalInput {
+    testId: number;
+    studentName: string;
+    sections: Array<TestEvalInputSection>;
+}
+
+export interface TestEvalInputSection {
+    sectionId: number;
+    questions: Array<TestEvalInputQuestion>;
+}
+
+export interface TestEvalInputQuestion {
+    questionId: number;
+    selectedOption: string;
+}
+
+
+/**
+ * Test Evaluation Response Body - contains correct answers
+ */
+export interface TestEvalResult {
+    testId: number;
+    studentName: string;
+    scores: {
+        scored: number,
+        outOf: number;
+    },
+    sections: [
+        {
+            sectionId: number,
+            questions: {
+                questionId: number,
+                questionTxt: string,
+                options: Array<String>,
+                selectedOption: string,
+                correctOption: string
+            }
+        }
+    ]
 }

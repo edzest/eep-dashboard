@@ -1,16 +1,15 @@
 <div class="test-window">
     <div class="test-window-header">
-        <p>QUESTION {{currentQuestionSet?.questionNumber}}/{{currentQuestionSet?.totalQuestion}}</p>
-        <p>SECTION {{currentQuestionSet?.sectionNumber}}/{{currentQuestionSet?.totalSection}}</p>
+        <p>QUESTION {{currentQuestion?.questionId}}/{{totalQuestions}}</p>
     </div>
     <div class="test-window-main">
-        <label id="current-question-label">{{currentQuestionSet?.questionTxt}}</label>
+        <label id="current-question-label">{{currentQuestion?.questionTxt}}</label>
         <mat-radio-group
             aria-labelledby="current-question-label"
             class="options-radio-group"
             [(ngModel)]="currentSelectedOption">
-            <mat-radio-button class="options-radio-button" *ngFor="let option of currentQuestionSet?.options" 
-            [value]="option" (change)="onOptionSelect($event)" [checked]="option == this.currentQuestionSet?.selectedOption">
+            <mat-radio-button class="options-radio-button" *ngFor="let option of currentQuestion?.options" 
+            [value]="option" (change)="onOptionSelect($event)" [checked]="option == this.currentQuestion?.selectedOption">
                 <span class="option-radio-label">{{option}}</span>
             </mat-radio-button>
         </mat-radio-group>

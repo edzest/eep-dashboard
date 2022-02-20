@@ -1,9 +1,8 @@
 import { CurrentTest } from './current-test';
-import { QuestionSet, TestBody } from './test-body.model';
+import { TestQuestion, TestBody } from './test-body.model';
 
 fdescribe('CurrentTest', () => {
   var sampleTestBody: TestBody;
-  var sampleQuestionSet: Array<QuestionSet>;
   var currentTest: CurrentTest;
 
   beforeEach(() => {
@@ -11,12 +10,8 @@ fdescribe('CurrentTest', () => {
       testId: 12,
       title: "PMP Revision Test",
       instructions: "lorem ipsum .... ",
-      sections: [
+      questions: [
         {
-          sectionId: 1,
-          sectionName: "Section 1",
-          questions: [
-            {
               questionId: 1,
               questionTxt: "Question 11",
               options: [
@@ -35,14 +30,9 @@ fdescribe('CurrentTest', () => {
                 "option 30",
                 "option 40"
               ]
-            }
-          ]
-        },
+            },
+          
         {
-          sectionId: 2,
-          sectionName: "Section 2",
-          questions: [
-            {
               questionId: 1,
               questionTxt: "Question 21",
               options: [
@@ -63,64 +53,7 @@ fdescribe('CurrentTest', () => {
               ]
             }
           ]
-        }
-      ]
     }
-    
-    sampleQuestionSet = [
-      {
-        questionTxt: "Question 11",
-        options: [
-          "option 1",
-          "option 2",
-          "option 3",
-          "option 4"
-        ],
-        questionNumber: 1,
-        sectionNumber: 1,
-        totalSection: 2,
-        totalQuestion: 2
-      },
-      {
-        questionTxt: "Question 12",
-        options: [
-          "option 10",
-          "option 20",
-          "option 30",
-          "option 40"
-        ],
-        questionNumber: 2,
-        sectionNumber: 1,
-        totalSection: 2,
-        totalQuestion: 2
-      },
-      {
-        questionTxt: "Question 21",
-        options: [
-          "option 1",
-          "option 2",
-          "option 3",
-          "option 4"
-        ],
-        questionNumber: 1,
-        sectionNumber: 2,
-        totalSection: 2,
-        totalQuestion: 2
-      },
-      {
-        questionTxt: "Question 22",
-        options: [
-          "option 10",
-          "option 20",
-          "option 30",
-          "option 40"
-        ],
-        questionNumber: 2,
-        sectionNumber: 2,
-        totalSection: 2,
-        totalQuestion: 2
-      }
-    ];
 
     currentTest = new CurrentTest(sampleTestBody);
   });
@@ -129,17 +62,11 @@ fdescribe('CurrentTest', () => {
     expect(new CurrentTest(sampleTestBody)).toBeTruthy();
   });
 
-  it('should create an Array of Question Sets', () => {
-    const questionSets: Array<QuestionSet> = currentTest.questionSets;
-    expect(questionSets).toEqual(sampleQuestionSet);
-  });
-
   it('should set first question of the testBody as the current question', () => {
-    const currentQuestionSet: QuestionSet = currentTest.getCurrentQuestionSet();
-    expect(currentQuestionSet.questionNumber).toEqual(1);
-    expect(currentQuestionSet.sectionNumber).toEqual(1);
-    expect(currentQuestionSet.questionTxt).toEqual("Question 11");
-    expect(currentQuestionSet.options).toEqual(["option 1",
+    const currentQuestion: TestQuestion = currentTest.getCurrentQuestion();
+    expect(currentQuestion.questionId).toEqual(1);
+    expect(currentQuestion.questionTxt).toEqual("Question 11");
+    expect(currentQuestion.options).toEqual(["option 1",
     "option 2",
     "option 3",
     "option 4"]);
@@ -147,20 +74,19 @@ fdescribe('CurrentTest', () => {
 
   describe('next question', () => {
     it('should return next question set', () => {
-      const questionSet: QuestionSet = currentTest.getNextQuestionSet();
-      expect(questionSet.sectionNumber).toEqual(1);
-      expect(questionSet.questionNumber).toEqual(2);
+      const questionSet: TestQuestion = currentTest.getNextQuestion();
+      expect(questionSet.questionId).toEqual(2);
     });
 
     it('should return undefined when current question is last question', () => {
-      let questionSet;
+      let question;
       for (let i = 0; i < 3; i++) {
-        questionSet = currentTest.getNextQuestionSet();
+        question = currentTest.getNextQuestion();
       }
-      expect(questionSet).not.toBeUndefined();
+      expect(question).not.toBeUndefined();
 
-      questionSet = currentTest.getNextQuestionSet();
-      expect(questionSet).toBeUndefined();
+      question = currentTest.getNextQuestion();
+      expect(question).toBeUndefined();
     });
 
     describe('isLastQuestion', () => {
@@ -169,9 +95,9 @@ fdescribe('CurrentTest', () => {
       });
 
       it('should return true when last', () => {
-        let questionSet;
+        let question;
         for (let i = 0; i < 3; i++) {
-          questionSet = currentTest.getNextQuestionSet();
+          question = currentTest.getNextQuestion();
         }
         expect(currentTest.isLastQuestion()).toBeTrue();
       });
@@ -180,17 +106,15 @@ fdescribe('CurrentTest', () => {
 
   describe('prev question', () => {
     it('should go to prev question', () => {
-      let questionSet: QuestionSet = currentTest.getNextQuestionSet();
-      expect(questionSet.questionNumber).toEqual(2);
-      expect(questionSet.sectionNumber).toEqual(1);
+      let question: TestQuestion = currentTest.getNextQuestion();
+      expect(question.questionId).toEqual(2);
 
-      questionSet = currentTest.getPrevQuestionSet();
-      expect(questionSet.questionNumber).toEqual(1);
-      expect(questionSet.sectionNumber).toEqual(1);
+      question = currentTest.getPrevQuestion();
+      expect(question.questionId).toEqual(1);
     });
 
     it('should return undefined when currently on first question', () => {
-      expect(currentTest.getPrevQuestionSet()).toBeUndefined();
+      expect(currentTest.getPrevQuestion()).toBeUndefined();
     });
 
     describe('firstQuestion', () => {
@@ -199,7 +123,7 @@ fdescribe('CurrentTest', () => {
       });
 
       it('should return false when not first', () => {
-        currentTest.getNextQuestionSet();
+        currentTest.getNextQuestion();
         expect(currentTest.isFirstQuestion()).toBeFalse();
       });
     });
@@ -207,12 +131,12 @@ fdescribe('CurrentTest', () => {
 
   describe('option selection', () => {
     it('should set selected option to current question set', () => {
-      let currentQuestionSet: QuestionSet = currentTest.getCurrentQuestionSet();
+    let currentQuestion: TestQuestion = currentTest.getCurrentQuestion();
     let selectedAnswer = "option 12";
-    expect(currentQuestionSet.selectedOption).toBeUndefined();
+    expect(currentQuestion.selectedOption).toBeUndefined();
     currentTest.setSelectedOption(selectedAnswer);
-    currentQuestionSet = currentTest.getCurrentQuestionSet();
-    expect(currentQuestionSet.selectedOption).toEqual(selectedAnswer);
+    currentQuestion = currentTest.getCurrentQuestion();
+    expect(currentQuestion.selectedOption).toEqual(selectedAnswer);
     });
   });
 });

@@ -4,7 +4,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { scan } from 'rxjs';
 import { CurrentTest } from '../current-test';
-import { QuestionSet, TestBody } from '../test-body.model';
+import { TestQuestion, TestBody } from '../test-body.model';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 import { TestInfo } from '../test-info.model';
 import { TestStateService } from '../test-state.service';
@@ -18,8 +18,9 @@ import { TestService } from '../test.service';
 export class TestWindowComponent implements OnInit {
 
   testInfo: TestInfo | undefined;
-  currentQuestionSet: QuestionSet | undefined;
+  currentQuestion: TestQuestion | undefined;
   currentTest: CurrentTest | undefined;
+  totalQuestions: number = 0;
 
   currentSelectedOption: string | undefined;
 
@@ -43,6 +44,7 @@ export class TestWindowComponent implements OnInit {
     this.testService.getTestById(this.testInfo.testId).subscribe((testBody) => {
       // todo: can I inject this using ng's DI??
       this.currentTest = new CurrentTest(testBody);
+      this.totalQuestions = testBody.questions.length;
       console.log('loaded current test body');
     });
   }
@@ -63,7 +65,7 @@ export class TestWindowComponent implements OnInit {
   }
 
   initializeTest() {
-    this.currentQuestionSet = this.currentTest?.getCurrentQuestionSet();
+    this.currentQuestion = this.currentTest?.getCurrentQuestion();
   }
 
   onOptionSelect(event: MatRadioChange) {
@@ -73,16 +75,17 @@ export class TestWindowComponent implements OnInit {
 
 
   next() {
-    this.currentQuestionSet = this.currentTest?.getNextQuestionSet();
+    this.currentQuestion = this.currentTest?.getNextQuestion();
   }
 
   previous() {
-    this.currentQuestionSet = this.currentTest?.getPrevQuestionSet();
+    this.currentQuestion = this.currentTest?.getPrevQuestion();
   }
 
   submit() {
     console.log("Submit Test");
     console.log(this.currentTest);
+
   }
 
 }
