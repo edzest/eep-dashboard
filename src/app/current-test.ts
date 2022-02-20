@@ -40,4 +40,8 @@ export class CurrentTest {
         let currentQuestion = this.getCurrentQuestion();
         currentQuestion.selectedOption = selectedAnswer;
     }
+
+    getAllQuestions(): Array<TestQuestion> {
+        return this.testBody.questions;
+    }
 }

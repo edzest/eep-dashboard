@@ -19,43 +19,33 @@ export interface TestQuestion {
 /**
  * Test Evaluation Request Body - contains selected answer for each question
  */
-export interface TestEvalInput {
+export interface TestResultRequest {
     testId: number;
     studentName: string;
-    sections: Array<TestEvalInputSection>;
+    questions: Array<TestResultRequestQuestion>;
 }
 
-export interface TestEvalInputSection {
-    sectionId: number;
-    questions: Array<TestEvalInputQuestion>;
-}
-
-export interface TestEvalInputQuestion {
+export interface TestResultRequestQuestion {
     questionId: number;
-    selectedOption: string;
+    selectedOption: string | undefined;
 }
 
 
 /**
  * Test Evaluation Response Body - contains correct answers
  */
-export interface TestEvalResult {
+export interface TestResultResponse {
     testId: number;
     studentName: string;
     scores: {
         scored: number,
         outOf: number;
     },
-    sections: [
-        {
-            sectionId: number,
-            questions: {
-                questionId: number,
-                questionTxt: string,
-                options: Array<String>,
-                selectedOption: string,
-                correctOption: string
-            }
-        }
-    ]
+    questions: [{
+        questionId: number,
+        questionTxt: string,
+        options: Array<String>,
+        selectedOption: string,
+        correctOption: string
+    }]
 }

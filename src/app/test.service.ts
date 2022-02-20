@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TestBody, TestEvalInput, TestEvalResult } from './test-body.model';
+import { TestBody, TestResultRequest, TestResultResponse } from './test-body.model';
 import { TestInfo } from './test-info.model';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class TestService {
     return this.http.get<TestBody>(this.getTestByIdUrl(testId));
   }
 
-  evaluateResult(testEvalInput: TestEvalInput): Observable<TestEvalResult> {
-    return this.http.post<TestEvalResult>(this.testEvalUrl, testEvalInput);
+  evaluateResult(testEvalInput: TestResultRequest): Observable<TestResultResponse> {
+    return this.http.post<TestResultResponse>(this.testEvalUrl, testEvalInput);
   }
 }
