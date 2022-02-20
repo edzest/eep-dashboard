@@ -4,10 +4,11 @@ import { MatRadioChange } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { scan } from 'rxjs';
 import { CurrentTest } from '../current-test';
-import { TestQuestion, TestBody } from '../test-body.model';
+import { TestQuestion, TestBody, TestResultRequest, TestResultResponse } from '../test-body.model';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 import { TestInfo } from '../test-info.model';
 import { TestStateService } from '../test-state.service';
+import { TestTransformerService } from '../test-transformer.service';
 import { TestService } from '../test.service';
 
 @Component({
@@ -18,15 +19,16 @@ import { TestService } from '../test.service';
 export class TestWindowComponent implements OnInit {
 
   testInfo: TestInfo | undefined;
-  currentQuestion: TestQuestion | undefined;
-  currentTest: CurrentTest | undefined;
+  currentQuestion: TestQuestion | undefined; 
+  currentTest: CurrentTest = new CurrentTest(); // initialize an empty test
   totalQuestions: number = 0;
 
   currentSelectedOption: string | undefined;
 
   constructor(public testDialog: MatDialog, private router: Router,
               private testStateService: TestStateService,
-              private testService: TestService) { }
+              private testService: TestService,
+              private testTransformerService: TestTransformerService) { }
 
   ngOnInit(): void {
     const currentTestInfo: TestInfo | undefined = this.testStateService.currentTestInfo;
@@ -84,8 +86,10 @@ export class TestWindowComponent implements OnInit {
 
   submit() {
     console.log("Submit Test");
-    console.log(this.currentTest);
-
+    const testResultRequest: TestResultRequest = this.testTransformerService.transformCurrentTestToTestResultRequest(this.currentTest)
+    this.testService.evaluateResult(testResultRequest).subscribe((testResultResponse: TestResultResponse) => {
+      this.testStateService.currentTestResult = testResultResponse;
+      this.router.navigate(['/result']);
+    });
   }
-
 }

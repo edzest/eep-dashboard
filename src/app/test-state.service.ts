@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TestQuestion } from './test-body.model';
+import { TestQuestion, TestResultResponse } from './test-body.model';
 import { TestInfo } from './test-info.model';
 
 @Injectable({
@@ -11,7 +11,10 @@ export class TestStateService {
   // this can be replaced with sophisticated state management services as the app complexity grows 
   public currentTestInfo: TestInfo | undefined;
 
-  public currentQuestionSet: TestQuestion | undefined;
+  public currentQuestion: TestQuestion | undefined;
+
+  public currentTestResult: TestResultResponse | undefined;
+
   
   constructor() { }
 }

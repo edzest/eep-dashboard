@@ -13,6 +13,7 @@ export interface TestQuestion {
     questionTxt: string;
     options: Array<String>;
     selectedOption?: string;
+    correctOption?: string;
 }
 
 
@@ -40,12 +41,6 @@ export interface TestResultResponse {
     scores: {
         scored: number,
         outOf: number;
-    },
-    questions: [{
-        questionId: number,
-        questionTxt: string,
-        options: Array<String>,
-        selectedOption: string,
-        correctOption: string
-    }]
+    };
+    questions: Array<TestQuestion>;
 }

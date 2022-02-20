@@ -1,14 +1,12 @@
 <div>
     <div>
-        <h1>PMP Test Revision</h1>
-    </div>
-    <div>
-        <h2>Piyush, you scored <span class="test-score">50/50</span></h2>
+        <h2>{{testResultResponse?.studentName}}, you scored 
+            <span class="test-score">{{testResultResponse?.scores?.scored}}/{{testResultResponse?.scores?.outOf}}</span></h2>
     </div>
     <div class="summary">
         <h4>TEST SUMMARY</h4>
-
-        <div *ngFor="let item of summaryItems">
+        <mat-divider></mat-divider>
+        <div *ngFor="let item of testResultResponse?.questions">
             <app-test-summary-item [item]="item"></app-test-summary-item>
             <mat-divider></mat-divider>
         </div>

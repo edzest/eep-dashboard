@@ -8,9 +8,20 @@ export class CurrentTest {
     testId: number;
     currentQuestionIndex: number = 0;
 
-    constructor(testBody: TestBody) {
-        this.testBody = testBody;
-        this.testId = testBody.testId;
+    constructor(testBody?: TestBody) {
+        if (testBody != undefined) {
+            this.testBody = testBody;
+            this.testId = testBody.testId;
+        } else {
+            this.testBody = {
+                testId: 0,
+                title: '',
+                instructions: '',
+                questions: []
+            };
+            this.testId = 0;
+        }
+        
     }
 
     getCurrentQuestion(): TestQuestion {

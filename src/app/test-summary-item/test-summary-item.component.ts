@@ -1,13 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface SummaryItem {
-  questionTxt: string;
-  options: Array<string>;
-  selectedOption: string;
-  correctOption: string;
-  sectionNumber: number;
-  questionNumber: number;
-}
+import { TestQuestion } from '../test-body.model';
 
 @Component({
   selector: 'app-test-summary-item',
@@ -16,7 +8,7 @@ export interface SummaryItem {
 })
 export class TestSummaryItemComponent implements OnInit {
 
-  @Input() item: SummaryItem | undefined;
+  @Input() item: TestQuestion | undefined;
   
   constructor() { }
 
