@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+export interface SummaryItem {
+  questionTxt: string;
+  options: Array<string>;
+  selectedOption: string;
+  correctOption: string;
+  sectionNumber: number;
+  questionNumber: number;
+}
 
 @Component({
   selector: 'app-test-summary-item',
@@ -7,10 +16,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestSummaryItemComponent implements OnInit {
 
-  questionTxt: string = "sample question";
-  options: Array<String> = ["option 1", "option 2", "option 3", "option 4"];
-  selectedOption: string = "option 1";
-  correctOption: string = "option 3";
+  @Input() item: SummaryItem | undefined;
+  
   constructor() { }
 
   ngOnInit(): void {

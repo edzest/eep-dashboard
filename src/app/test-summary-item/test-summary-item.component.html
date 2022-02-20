@@ -1,19 +1,19 @@
 <div>
     <div class="header">
-        <h4>QUESTION 1</h4>
-        <h4>CORRECT</h4>
+        <h4>SECTION {{item?.sectionNumber}} / QUESTION {{item?.questionNumber}}</h4>
+        <h4>{{item?.selectedOption == item?.correctOption ? 'CORRECT' : 'INCORRECT'}}</h4>
     </div>
     <div>
-        <label id="current-question-label">{{questionTxt}}</label>
+        <label id="current-question-label">{{item?.questionTxt}}</label>
         <mat-radio-group
             aria-labelledby="question-label"
             class="options-radio-group"
             >
-            <mat-radio-button class="options-radio-button" *ngFor="let option of options" 
-            [value]="option" [checked]="option == this.selectedOption" disabled>
+            <mat-radio-button class="options-radio-button" *ngFor="let option of item?.options" 
+            [value]="option" [checked]="option == item?.selectedOption" disabled>
                 <span class="option-radio-label">{{option}}</span>
             </mat-radio-button>
         </mat-radio-group>
-        <h4>Correct Answer: option 2</h4>
+        <h4>Correct Answer: {{item?.correctOption}}</h4>
     </div>
 </div>

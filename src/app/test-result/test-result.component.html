@@ -8,8 +8,9 @@
     <div class="summary">
         <h4>TEST SUMMARY</h4>
 
-        <div>
-            
+        <div *ngFor="let item of summaryItems">
+            <app-test-summary-item [item]="item"></app-test-summary-item>
+            <mat-divider></mat-divider>
         </div>
     </div>
 </div>

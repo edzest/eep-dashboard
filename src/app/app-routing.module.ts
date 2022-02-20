@@ -9,7 +9,7 @@ import { TestSummaryItemComponent } from './test-summary-item/test-summary-item.
 const routes: Routes = [
   { path: 'home', component: TestsComponent },
   { path: 'test/:id', component: TestWindowComponent },
-  { path: 'result', component: TestSummaryItemComponent },
+  { path: 'result', component: TestResultComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
 
