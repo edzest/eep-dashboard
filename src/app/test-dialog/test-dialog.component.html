@@ -3,12 +3,12 @@
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Enter your name</mat-label>
-      <input matInput [(ngModel)]="studentName">
+      <input matInput [(ngModel)]="studentName" required #name="ngModel">
     </mat-form-field>
   </p>
   <p>{{data.instructions}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="false">Cancel</button>
-  <button mat-button [mat-dialog-close]="studentName" cdkFocusInitial>Start Test</button>
+  <button mat-button [mat-dialog-close]="studentName" cdkFocusInitial [disabled]="name.errors?.['required']">Start Test</button>
 </mat-dialog-actions>
