@@ -1,3 +1,7 @@
+.result-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .test-score {
     display: block;
     font-size: xx-large;
