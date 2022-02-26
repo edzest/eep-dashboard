@@ -22,6 +22,7 @@ export class TestWindowComponent implements OnInit {
   currentQuestion: TestQuestion | undefined; 
   currentTest: CurrentTest = new CurrentTest(); // initialize an empty test
   totalQuestions: number = 0;
+  currentStudentName: string = "";
 
   currentSelectedOption: string | undefined;
 
@@ -61,6 +62,7 @@ export class TestWindowComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         console.log(`Dialog closed: ${result}`);
+        this.currentStudentName = result;
         this.initializeTest();
       }
     });
@@ -86,7 +88,8 @@ export class TestWindowComponent implements OnInit {
 
   submit() {
     console.log("Submit Test");
-    const testResultRequest: TestResultRequest = this.testTransformerService.transformCurrentTestToTestResultRequest(this.currentTest)
+    const testResultRequest: TestResultRequest = this.testTransformerService.transformCurrentTestToTestResultRequest(this.currentTest);
+    testResultRequest.studentName = this.currentStudentName;
     this.testService.evaluateResult(testResultRequest).subscribe((testResultResponse: TestResultResponse) => {
       this.testStateService.currentTestResult = testResultResponse;
       this.router.navigate(['/result']);
