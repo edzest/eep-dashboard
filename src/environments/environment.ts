@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/',
 };
 
 /*

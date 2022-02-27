@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TestBody, TestResultRequest, TestResultResponse } from './test-body.model';
 import { TestInfo } from './test-info.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
 
-  private allTestUrl = 'https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/tests';
-  private getTestByIdUrl = (testId: number) => `https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/tests/${testId}`;
-  private testEvalUrl = 'https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/test_result'
+  private allTestUrl = this.getBaseUrl() + 'tests';
+  private getTestByIdUrl = (testId: number) => this.getBaseUrl() + `tests/${testId}`;
+  private testEvalUrl = this.getBaseUrl() + 'test_result'
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +26,9 @@ export class TestService {
 
   evaluateResult(testEvalInput: TestResultRequest): Observable<TestResultResponse> {
     return this.http.post<TestResultResponse>(this.testEvalUrl, testEvalInput);
+  }
+
+  private getBaseUrl(): string {
+    return environment.apiUrl;
   }
 }
