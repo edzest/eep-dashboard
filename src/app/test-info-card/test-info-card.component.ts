@@ -18,7 +18,7 @@ export class TestInfoCardComponent implements OnInit {
   }
 
   onButtonClick() {
-    this.takeTest.emit(this.testInfo?.testId);
+    this.takeTest.emit(this.testInfo?.id);
   }
 
 }

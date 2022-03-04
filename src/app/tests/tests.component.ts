@@ -21,7 +21,7 @@ export class TestsComponent implements OnInit {
   }
 
   takeTest(testId: number) {
-    const currentTestInfo: TestInfo | undefined = this.allTests.find(testInfo => testInfo.testId == testId);
+    const currentTestInfo: TestInfo | undefined = this.allTests.find(testInfo => testInfo.id == testId);
     this.testStateService.currentTestInfo = currentTestInfo;
     this.router.navigate(['/test', testId]);
   }

@@ -1,5 +1,5 @@
 export interface TestInfo {
-    testId: number;
+    id: number;
     title: string;
     instructions: string;
 }

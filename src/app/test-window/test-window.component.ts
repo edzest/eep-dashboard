@@ -36,7 +36,7 @@ export class TestWindowComponent implements OnInit {
     if (currentTestInfo == undefined) {
       // todo: fetch test data from backend service
       this.testInfo = {
-        testId: 12,
+        id: 12,
         title: 'Sample Test Name',
         instructions: 'sample test info...'
       }
@@ -44,7 +44,7 @@ export class TestWindowComponent implements OnInit {
       this.testInfo = currentTestInfo;
     }
     this.openTestDialog();
-    this.testService.getTestById(this.testInfo.testId).subscribe((testBody) => {
+    this.testService.getTestById(this.testInfo.id).subscribe((testBody) => {
       // todo: can I inject this using ng's DI??
       this.currentTest = new CurrentTest(testBody);
       this.totalQuestions = testBody.questions.length;
