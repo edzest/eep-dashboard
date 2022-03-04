@@ -23,7 +23,7 @@ export interface TestQuestion {
 export interface TestResultRequest {
     testId: number;
     studentName: string;
-    questions: Array<TestResultRequestQuestion>;
+    answers: Array<TestResultRequestQuestion>;
 }
 
 export interface TestResultRequestQuestion {

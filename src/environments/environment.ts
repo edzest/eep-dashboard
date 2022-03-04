@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/',
+  // apiUrl: 'https://virtserver.swaggerhub.com/e3443/EEP-API/0.0.1/',
+  apiUrl: 'http://localhost:8080/api/'
 };
 
 /*
