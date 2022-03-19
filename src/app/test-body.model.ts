@@ -10,6 +10,7 @@ export interface TestBody {
 
 export interface TestQuestion {
     questionId: number;
+    sectionId?: number;
     questionTxt: string;
     options: Array<String>;
     selectedOption?: string;

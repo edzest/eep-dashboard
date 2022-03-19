@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
 import { Router } from '@angular/router';
-import { scan } from 'rxjs';
 import { CurrentTest } from '../current-test';
-import { TestQuestion, TestBody, TestResultRequest, TestResultResponse } from '../test-body.model';
+import { TestQuestion, TestResultRequest, TestResultResponse } from '../test-body.model';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 import { TestInfo } from '../test-info.model';
 import { TestStateService } from '../test-state.service';
 import { TestTransformerService } from '../test-transformer.service';
 import { TestService } from '../test.service';
+import { Timer } from './timer';
 
 @Component({
   selector: 'app-test-window',
@@ -23,6 +23,13 @@ export class TestWindowComponent implements OnInit {
   currentTest: CurrentTest = new CurrentTest(); // initialize an empty test
   totalQuestions: number = 0;
   currentStudentName: string = "";
+  
+  // timers
+  minutes_str: string | undefined;
+  seconds_str: string | undefined;
+
+  duration: number | undefined;
+  timer: Timer | undefined; 
 
   currentSelectedOption: string | undefined;
 
@@ -70,6 +77,18 @@ export class TestWindowComponent implements OnInit {
 
   initializeTest() {
     this.currentQuestion = this.currentTest?.getCurrentQuestion();
+    let currentSection = this.currentQuestion.sectionId;
+
+    if (currentSection && this.testInfo?.timings) {
+      this.duration = this.testInfo.timings.sectionTimings[currentSection];
+      if (this.duration) {
+        this.timer = new Timer(this.duration);
+        this.timer.startTimer().subscribe({ 
+          next: (duration: number) => this.formatTime(Math.floor(duration / 60), duration % 60), 
+          complete: () => this.submit()
+        });
+      }
+    } 
   }
 
   onOptionSelect(event: MatRadioChange) {
@@ -94,5 +113,19 @@ export class TestWindowComponent implements OnInit {
       this.testStateService.currentTestResult = testResultResponse;
       this.router.navigate(['/result']);
     });
+  }
+
+  formatTime(minutes: number, seconds: number): void {
+    if (minutes < 10) {
+      this.minutes_str = "0" + minutes;
+    } else {
+      this.minutes_str = "" + minutes;
+    }
+    
+    if (seconds < 10) {
+      this.seconds_str = "0" + seconds;
+    } else {
+      this.seconds_str = "" + seconds;
+    }
   }
 }

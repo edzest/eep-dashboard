@@ -1,3 +1,6 @@
+<div class="test-timer">
+    <h4 class="timer" *ngIf="this.duration">{{this.minutes_str}}:{{this.seconds_str}}</h4>
+</div>
 <div class="test-window">
     <div class="test-window-header">
         <p>QUESTION {{currentQuestion?.questionId}}/{{totalQuestions}}</p>

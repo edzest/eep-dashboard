@@ -1,4 +1,14 @@
+.test-timer {
+    max-width: 1100px;
+    margin: 0 auto; 
+}
+
+.timer {
+    float: right;
+}
+
 .test-window {
+    clear: both;
     max-width: 1100px;
     margin: 0 auto;
     border: 1px solid rgba(0,0,0,.2);
