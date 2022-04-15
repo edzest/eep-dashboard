@@ -5,7 +5,7 @@ export interface TestInfo {
     timings?: {
         breakDuration: number;
         sectionTimings: {
-            [sectionId: string]: number;
+            [sectionId: number]: number;
         }
     }
 }
