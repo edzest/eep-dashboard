@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 24px 0;
 }
+
 h1 {
     color: var(--text-dark);
     font-weight: bold;
@@ -17,11 +18,6 @@ h1 {
 
 .container {
     padding: 24px 0;
-}
-
-.test-container {
-    display: flex;
-    gap: 32px;
 }
 
 .action-card {

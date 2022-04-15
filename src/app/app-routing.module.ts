@@ -5,12 +5,14 @@ import { TestsComponent } from './tests/tests.component';
 import { TestWindowComponent } from './test-window/test-window.component';
 import { TestResultComponent } from './test-result/test-result.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard/admin-dashboard.component';
+import { CreateTestComponent } from './admin-dashboard/create-test/create-test.component';
 
 const routes: Routes = [
   { path: 'home', component: TestsComponent },
   { path: 'test/:id', component: TestWindowComponent },
   { path: 'result', component: TestResultComponent },
   { path: 'admin', component: AdminDashboardComponent},
+  { path: 'admin/create-test', component: CreateTestComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
 
