@@ -23,6 +23,7 @@ import { TestWindowComponent } from './test-window/test-window.component';
 import { TestDialogComponent } from './test-dialog/test-dialog.component';
 import { TestResultComponent } from './test-result/test-result.component';
 import { TestSummaryItemComponent } from './test-summary-item/test-summary-item.component';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TestSummaryItemComponent } from './test-summary-item/test-summary-item.
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatDividerModule
+    MatDividerModule,
+    AdminDashboardModule
   ],
   providers: [
     
