@@ -12,12 +12,18 @@
         </div>
     </div>
     <div class="exam-builder">
+        <div *ngIf="allQuestions.length == 0" class="info-message">
+            
+            <img src="../../../assets/images/socrates.jpeg" alt="socrates thinking" class="round-medium-image">
+            <p>Is it even a test, if it does not have a single question? </p>
+            <p>Click <span class="action-text" (click)="addNewQuestion()">here</span> to create one.</p>
+        </div>
         <div *ngFor="let question of allQuestions;let qIndex = index;">
             <div class="mcq">
                 <div class="question">
                     <mat-form-field style="width: 100%;" appearance="fill">
                         <mat-label>Question {{qIndex + 1}}</mat-label>
-                        <textarea matInput cdkTextareaAutosize placeholder="{{question.question}}"></textarea>
+                        <textarea matInput cdkTextareaAutosize placeholder="{{question.question}}" value="{{question.question}}"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="options">
@@ -52,6 +58,18 @@
                     <hr>
     
                     <div class="footer">
+                        <div id="footer-actions">
+                            <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
+                                <mat-icon (click)="duplicateQuestion()">
+                                    content_copy
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="delete" matTooltip="Delete">
+                                <mat-icon (click)="deleteQuestion(qIndex)">
+                                    delete
+                                </mat-icon>
+                            </button>
+                        </div>
                         <div id="correct-answer-container" *ngIf="allQuestions[qIndex].options.length > 0">
                             <mat-form-field appearance="fill">
                                 <mat-label>Choose correct options</mat-label>
@@ -71,18 +89,6 @@
                                     </mat-option>
                                 </mat-select> 
                             </mat-form-field>
-                        </div>
-                        <div id="footer-actions">
-                            <button mat-icon-button aria-label="delete" matTooltip="Delete">
-                                <mat-icon (click)="deleteQuestion()">
-                                    delete
-                                </mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
-                                <mat-icon (click)="duplicateQuestion()">
-                                    content_copy
-                                </mat-icon>
-                            </button>
                         </div>
                     </div>
     

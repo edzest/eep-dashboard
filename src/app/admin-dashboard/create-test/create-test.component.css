@@ -35,9 +35,29 @@
     display: flex;
     gap: 10px;
     justify-content: space-between;
+    flex-direction: row-reverse;
 } 
 
 .footer-actions {
     display: flex;
     flex-direction: row-reverse;
+}
+
+.action-text {
+    text-decoration: underline dashed;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.info-message {
+    text-align: center;
+    padding: 24px 0;
+    color: var(--text);
+}
+
+
+.round-medium-image {
+    border-radius: 100%;
+    width: 25%;
+    margin: 24px;
 }

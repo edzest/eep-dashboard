@@ -24,15 +24,12 @@ export class CreateTestComponent implements OnInit {
       'question': 'Ex: What is the capital of India...',
       'options': [{
         id: 0,
-        option: ''
+        option: 'New Delhi'
       }]
     }
   ];
 
   correctAnswers = new FormControl();
-
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
 
   constructor() { }
 
@@ -80,8 +77,12 @@ export class CreateTestComponent implements OnInit {
 
   }
 
-  deleteQuestion() {
-
+  /**
+   * Removes the question at index 'qIndex' from 'allQuestions'
+   * @param qIndex Question index
+   */
+  deleteQuestion(qIndex: number) {
+    this.allQuestions.splice(qIndex, 1);
   }
 
   /**
@@ -94,6 +95,24 @@ export class CreateTestComponent implements OnInit {
   optionsTrackFn(index: number, option: Option) {
     return option.id;
   } 
+
+
+  /**
+   * Adds a new question to 'allQuestions' array
+   */
+  addNewQuestion() {
+    const question: McqQuestion = {
+      question: 'What is the capital of India?',
+      options: [
+        {
+          id: 0,
+          option: 'New Delhi'
+        }
+      ]
+    };
+
+    this.allQuestions.push(question);
+  }
 
 
 
