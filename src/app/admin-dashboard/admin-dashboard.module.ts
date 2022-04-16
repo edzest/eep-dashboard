@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuestionEditorComponent } from './create-test/question-editor/question-editor.component';
+import { QuestionDisplayComponent } from './create-test/question-display/question-display.component';
 
 
 
@@ -17,7 +18,8 @@ import { QuestionEditorComponent } from './create-test/question-editor/question-
   declarations: [
     AdminDashboardComponent,
     CreateTestComponent,
-    QuestionEditorComponent
+    QuestionEditorComponent,
+    QuestionDisplayComponent
   ],
   imports: [
     CommonModule,

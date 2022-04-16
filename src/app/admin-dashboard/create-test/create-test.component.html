@@ -19,12 +19,15 @@
             <p>Click <span class="action-text" (click)="addNewQuestion()">here</span> to create one.</p>
         </div>
         <div *ngFor="let question of allQuestions;let qIndex = index;">
-            <app-question-editor 
+            <app-question-display 
                 [question]="question" 
                 [qIndex]="qIndex"
+                [currentlyEditingQIdx]="currentQIdx"
                 (deleteQuestion)="deleteQuestion($event)"
-                (duplicateQuestion)="duplicateQuestion($event)">
-            </app-question-editor>
+                (duplicateQuestion)="duplicateQuestion($event)"
+                (containerClicked)="onQuestionContainerClick($event)">
+            </app-question-display>
+
         </div>
         <div class="new-question">
             <!-- <p>Add new question</p> -->

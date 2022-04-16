@@ -19,11 +19,14 @@ export class CreateTestComponent implements OnInit {
     }
   ];
 
-  currentQIdx: number = 0;
+  currentQIdx: number | undefined | null;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.allQuestions.length == 1) {
+      this.currentQIdx = 0;
+    }
   }
 
 
@@ -35,7 +38,6 @@ export class CreateTestComponent implements OnInit {
     const question: McqQuestion = this.allQuestions[qIndex];
     const questionCopy: McqQuestion = JSON.parse(JSON.stringify(question));
     this.allQuestions.splice(qIndex+1, 0, questionCopy);
-    this.currentQIdx++;
   }
 
   /**
@@ -44,9 +46,8 @@ export class CreateTestComponent implements OnInit {
    */
   deleteQuestion(qIndex: number) {
     this.allQuestions.splice(qIndex, 1);
+    this.currentQIdx = null;
   }
-
-  
 
 
   /**
@@ -66,5 +67,10 @@ export class CreateTestComponent implements OnInit {
 
     this.allQuestions.push(question);
     this.currentQIdx = 0;
+  }
+
+
+  onQuestionContainerClick(qIndex: number) {
+    this.currentQIdx = qIndex;
   }
 }

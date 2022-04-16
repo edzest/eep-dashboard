@@ -33,43 +33,5 @@
             </mat-icon>
             <span>Add Option</span>
         </button>
-                               
-        <hr>
-
-        <div class="footer">
-            <div id="footer-actions">
-                <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
-                    <mat-icon (click)="onDuplicateQuestion(qIndex)">
-                        content_copy
-                    </mat-icon>
-                </button>
-                <button mat-icon-button aria-label="delete" matTooltip="Delete">
-                    <mat-icon (click)="onDeleteQuestion(qIndex)">
-                        delete
-                    </mat-icon>
-                </button>
-            </div>
-            <div id="correct-answer-container" *ngIf="question.options.length > 0">
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose correct options</mat-label>
-                    <mat-select [(ngModel)]="question.correctOptions" multiple>
-                        <mat-select-trigger>
-                        {{question.correctOptions?.length}}
-                        <span *ngIf="question.correctOptions.length > 1" class="example-additional-selection">
-                            options
-                        </span>
-                        <span *ngIf="question.correctOptions.length == 1" class="example-additional-selection">
-                            option
-                        </span>
-                        selected
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let option of question.options;" [value]="option.option">
-                            {{option.option}}
-                        </mat-option>
-                    </mat-select> 
-                </mat-form-field>
-            </div>
-        </div>
-
     </div>
 </div>
