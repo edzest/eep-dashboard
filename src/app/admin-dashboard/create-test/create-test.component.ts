@@ -4,7 +4,8 @@ import { FormControl } from '@angular/forms';
 // Type to store question and its answers
 interface McqQuestion {
   question: string,
-  options: Option[]
+  options: Option[],
+  correctOptions: string[]
 }
 
 interface Option {
@@ -25,11 +26,12 @@ export class CreateTestComponent implements OnInit {
       'options': [{
         id: 0,
         option: 'New Delhi'
-      }]
+      }],
+      correctOptions: ['New Delhi']
     }
   ];
 
-  correctAnswers = new FormControl();
+  currentQIdx: number = 0;
 
   constructor() { }
 
@@ -64,17 +66,26 @@ export class CreateTestComponent implements OnInit {
     const options: Option[] = this.allQuestions[qIndex].options;
     // if this option is in correctAnswers, remove from there too
     const option: Option = options[index];
-    if (this.correctAnswers.value?.includes(option.option)) {
-      const caIndex = this.correctAnswers.value.indexOf(option.option);
-      this.correctAnswers.value.splice(caIndex, 1);
+    const correctOptions = this.allQuestions[qIndex].correctOptions;
+
+    if (correctOptions?.includes(option.option)) {
+      const caIndex = correctOptions.indexOf(option.option);
+      correctOptions.splice(caIndex, 1);
     }
-    console.log(this.correctAnswers.value);
     // remove from current options
     options.splice(index, 1);
   } 
 
-  duplicateQuestion() {
 
+  /**
+   * Duplicates the question at 'qIndex' and inserts it below the current question
+   * @param qIndex Question index
+   */
+  duplicateQuestion(qIndex: number) {
+    const question: McqQuestion = this.allQuestions[qIndex];
+    const questionCopy: McqQuestion = JSON.parse(JSON.stringify(question));
+    this.allQuestions.splice(qIndex+1, 0, questionCopy);
+    this.currentQIdx++;
   }
 
   /**
@@ -107,11 +118,13 @@ export class CreateTestComponent implements OnInit {
         {
           id: 0,
           option: 'New Delhi'
-        }
-      ]
+        },
+      ],
+      correctOptions: ['New Delhi']
     };
 
     this.allQuestions.push(question);
+    this.currentQIdx = 0;
   }
 
 

@@ -60,7 +60,7 @@
                     <div class="footer">
                         <div id="footer-actions">
                             <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
-                                <mat-icon (click)="duplicateQuestion()">
+                                <mat-icon (click)="duplicateQuestion(qIndex)">
                                     content_copy
                                 </mat-icon>
                             </button>
@@ -73,13 +73,13 @@
                         <div id="correct-answer-container" *ngIf="allQuestions[qIndex].options.length > 0">
                             <mat-form-field appearance="fill">
                                 <mat-label>Choose correct options</mat-label>
-                                <mat-select [formControl]="correctAnswers" multiple>
+                                <mat-select [(ngModel)]="allQuestions[qIndex].correctOptions" multiple [disabled]="currentQIdx != qIndex">
                                     <mat-select-trigger>
-                                    {{correctAnswers.value?.length}}
-                                    <span *ngIf="correctAnswers.value?.length > 1" class="example-additional-selection">
+                                    {{allQuestions[qIndex].correctOptions?.length}}
+                                    <span *ngIf="allQuestions[qIndex].correctOptions.length > 1" class="example-additional-selection">
                                         options
                                     </span>
-                                    <span *ngIf="correctAnswers.value?.length == 1" class="example-additional-selection">
+                                    <span *ngIf="allQuestions[qIndex].correctOptions.length == 1" class="example-additional-selection">
                                         option
                                     </span>
                                     selected
