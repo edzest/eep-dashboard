@@ -9,13 +9,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuestionEditorComponent } from './create-test/question-editor/question-editor.component';
 
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
-    CreateTestComponent
+    CreateTestComponent,
+    QuestionEditorComponent
   ],
   imports: [
     CommonModule,

@@ -19,81 +19,12 @@
             <p>Click <span class="action-text" (click)="addNewQuestion()">here</span> to create one.</p>
         </div>
         <div *ngFor="let question of allQuestions;let qIndex = index;">
-            <div class="mcq">
-                <div class="question">
-                    <mat-form-field style="width: 100%;" appearance="fill">
-                        <mat-label>Question {{qIndex + 1}}</mat-label>
-                        <textarea matInput cdkTextareaAutosize placeholder="{{question.question}}" value="{{question.question}}"></textarea>
-                    </mat-form-field>
-                </div>
-                <div class="options">
-                    <div *ngFor="let option of question.options; let index = index; trackBy: optionsTrackFn">
-                        <div class="option">
-                            <mat-icon>
-                                radio_button_unchecked
-                            </mat-icon>
-                            <mat-form-field style="width:100%">
-                                <mat-label>Option {{index + 1}}</mat-label>
-                                <input matInput placeholder="new option" 
-                                    value="" 
-                                    autocomplete="off" 
-                                    [(ngModel)]="allQuestions[qIndex].options[index].option"/>
-                              </mat-form-field>
-                            <button mat-icon-button aria-label="remove option" matTooltip="Remove">
-                                <mat-icon (click)="removeOption(qIndex, index)">
-                                    clear
-                                </mat-icon>
-                            </button>
-                        </div>
-                    </div>
-    
-
-                    <button mat-button (click)="onClickAddOption(qIndex)">
-                        <mat-icon>
-                            add
-                        </mat-icon>
-                        <span>Add Option</span>
-                    </button>
-                                           
-                    <hr>
-    
-                    <div class="footer">
-                        <div id="footer-actions">
-                            <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
-                                <mat-icon (click)="duplicateQuestion(qIndex)">
-                                    content_copy
-                                </mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="delete" matTooltip="Delete">
-                                <mat-icon (click)="deleteQuestion(qIndex)">
-                                    delete
-                                </mat-icon>
-                            </button>
-                        </div>
-                        <div id="correct-answer-container" *ngIf="allQuestions[qIndex].options.length > 0">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Choose correct options</mat-label>
-                                <mat-select [(ngModel)]="allQuestions[qIndex].correctOptions" multiple [disabled]="currentQIdx != qIndex">
-                                    <mat-select-trigger>
-                                    {{allQuestions[qIndex].correctOptions?.length}}
-                                    <span *ngIf="allQuestions[qIndex].correctOptions.length > 1" class="example-additional-selection">
-                                        options
-                                    </span>
-                                    <span *ngIf="allQuestions[qIndex].correctOptions.length == 1" class="example-additional-selection">
-                                        option
-                                    </span>
-                                    selected
-                                    </mat-select-trigger>
-                                    <mat-option *ngFor="let option of allQuestions[qIndex].options;" [value]="option.option">
-                                        {{option.option}}
-                                    </mat-option>
-                                </mat-select> 
-                            </mat-form-field>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+            <app-question-editor 
+                [question]="question" 
+                [qIndex]="qIndex"
+                (deleteQuestion)="deleteQuestion($event)"
+                (duplicateQuestion)="duplicateQuestion($event)">
+            </app-question-editor>
         </div>
         <div class="new-question">
             <!-- <p>Add new question</p> -->

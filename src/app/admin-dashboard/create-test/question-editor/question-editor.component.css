@@ -1,0 +1,21 @@
+.mcq {
+    padding: 12px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mcq .footer {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+} 
+
+.footer-actions {
+    display: flex;
+    flex-direction: row-reverse;
+}

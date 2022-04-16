@@ -1,0 +1,75 @@
+<div class="mcq">
+    <div class="question">
+        <mat-form-field style="width: 100%;" appearance="fill">
+            <mat-label>Question {{qIndex + 1}}</mat-label>
+            <textarea matInput cdkTextareaAutosize placeholder="{{question.question}}" value="{{question.question}}"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="options">
+        <div *ngFor="let option of question.options; let index = index; trackBy: optionsTrackFn">
+            <div class="option">
+                <mat-icon>
+                    radio_button_unchecked
+                </mat-icon>
+                <mat-form-field style="width:100%">
+                    <mat-label>Option {{index + 1}}</mat-label>
+                    <input matInput placeholder="new option" 
+                        value="" 
+                        autocomplete="off" 
+                        [(ngModel)]="question.options[index].option"/>
+                  </mat-form-field>
+                <button mat-icon-button aria-label="remove option" matTooltip="Remove">
+                    <mat-icon (click)="removeOption(index)">
+                        clear
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+        <button mat-button (click)="onClickAddOption(qIndex)">
+            <mat-icon>
+                add
+            </mat-icon>
+            <span>Add Option</span>
+        </button>
+                               
+        <hr>
+
+        <div class="footer">
+            <div id="footer-actions">
+                <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
+                    <mat-icon (click)="onDuplicateQuestion(qIndex)">
+                        content_copy
+                    </mat-icon>
+                </button>
+                <button mat-icon-button aria-label="delete" matTooltip="Delete">
+                    <mat-icon (click)="onDeleteQuestion(qIndex)">
+                        delete
+                    </mat-icon>
+                </button>
+            </div>
+            <div id="correct-answer-container" *ngIf="question.options.length > 0">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose correct options</mat-label>
+                    <mat-select [(ngModel)]="question.correctOptions" multiple>
+                        <mat-select-trigger>
+                        {{question.correctOptions?.length}}
+                        <span *ngIf="question.correctOptions.length > 1" class="example-additional-selection">
+                            options
+                        </span>
+                        <span *ngIf="question.correctOptions.length == 1" class="example-additional-selection">
+                            option
+                        </span>
+                        selected
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let option of question.options;" [value]="option.option">
+                            {{option.option}}
+                        </mat-option>
+                    </mat-select> 
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+</div>
