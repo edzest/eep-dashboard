@@ -7,7 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     MatTooltipModule,
-    FormsModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminDashboardModule { }

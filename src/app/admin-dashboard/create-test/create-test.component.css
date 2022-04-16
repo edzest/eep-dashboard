@@ -34,5 +34,10 @@
 .mcq .footer {
     display: flex;
     gap: 10px;
-    flex-direction: row-reverse;
+    justify-content: space-between;
 } 
+
+.footer-actions {
+    display: flex;
+    flex-direction: row-reverse;
+}

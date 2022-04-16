@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 // Type to store question and its answers
 interface McqQuestion {
@@ -28,6 +29,11 @@ export class CreateTestComponent implements OnInit {
     }
   ];
 
+  correctAnswers = new FormControl();
+
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -41,7 +47,7 @@ export class CreateTestComponent implements OnInit {
    */
   onClickAddOption(qIndex: number) {
     const optionsLength = this.allQuestions[qIndex].options.length;
-    const lastId = this.allQuestions[qIndex].options[optionsLength-1].id;
+    const lastId = optionsLength == 0 ? 1 : this.allQuestions[qIndex].options[optionsLength-1].id;
 
     const newOption: Option = {
       id: lastId + 1,
@@ -58,7 +64,15 @@ export class CreateTestComponent implements OnInit {
    * @param index option index
    */
   removeOption(qIndex: number, index: number) {
-    const options = this.allQuestions[qIndex].options;
+    const options: Option[] = this.allQuestions[qIndex].options;
+    // if this option is in correctAnswers, remove from there too
+    const option: Option = options[index];
+    if (this.correctAnswers.value?.includes(option.option)) {
+      const caIndex = this.correctAnswers.value.indexOf(option.option);
+      this.correctAnswers.value.splice(caIndex, 1);
+    }
+    console.log(this.correctAnswers.value);
+    // remove from current options
     options.splice(index, 1);
   } 
 

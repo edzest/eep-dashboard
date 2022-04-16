@@ -52,17 +52,38 @@
                     <hr>
     
                     <div class="footer">
-                        <button mat-icon-button aria-label="delete" matTooltip="Delete">
-                            <mat-icon (click)="deleteQuestion()">
-                                delete
-                            </mat-icon>
-                        </button>
-                        <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
-                            <mat-icon (click)="duplicateQuestion()">
-                                content_copy
-                            </mat-icon>
-                        </button>
-                        
+                        <div id="correct-answer-container" *ngIf="allQuestions[qIndex].options.length > 0">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choose correct options</mat-label>
+                                <mat-select [formControl]="correctAnswers" multiple>
+                                    <mat-select-trigger>
+                                    {{correctAnswers.value?.length}}
+                                    <span *ngIf="correctAnswers.value?.length > 1" class="example-additional-selection">
+                                        options
+                                    </span>
+                                    <span *ngIf="correctAnswers.value?.length == 1" class="example-additional-selection">
+                                        option
+                                    </span>
+                                    selected
+                                    </mat-select-trigger>
+                                    <mat-option *ngFor="let option of allQuestions[qIndex].options;" [value]="option.option">
+                                        {{option.option}}
+                                    </mat-option>
+                                </mat-select> 
+                            </mat-form-field>
+                        </div>
+                        <div id="footer-actions">
+                            <button mat-icon-button aria-label="delete" matTooltip="Delete">
+                                <mat-icon (click)="deleteQuestion()">
+                                    delete
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
+                                <mat-icon (click)="duplicateQuestion()">
+                                    content_copy
+                                </mat-icon>
+                            </button>
+                        </div>
                     </div>
     
                 </div>
