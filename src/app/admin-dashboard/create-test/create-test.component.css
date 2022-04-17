@@ -17,6 +17,16 @@
     gap: 10px;
 }
 
+.upload>input {
+    display: none;
+}
+.upload>label {
+    cursor: pointer;
+}
+.upload>label>button {
+    pointer-events: none;
+}
+
 .action-text {
     text-decoration: underline dashed;
     cursor: pointer;

@@ -4,9 +4,14 @@
             <h3>Unititled Exam</h3>
         </div>
         <div class="actions">
-            <button mat-icon-button aria-label="upload-test">
-                <mat-icon>upload</mat-icon>
-              </button>
+            <div class="upload">
+                <input id="test-file-upload" type="file" class="upload" (change)="onFileUpload($event)">
+                <label for="test-file-upload" matTooltip="Upload CSV">
+                    <button mat-icon-button aria-label="upload-test" type="button"> 
+                        <mat-icon>upload</mat-icon>
+                    </button>
+                </label>
+            </div>
             <button mat-button color="primary">Save</button>
             <button mat-stroked-button color="primary">Publish</button>
         </div>
