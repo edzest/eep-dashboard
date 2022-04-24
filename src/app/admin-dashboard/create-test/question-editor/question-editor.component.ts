@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Question } from 'src/app/shared/models/question';
 import { McqQuestion, Option } from '../question-types';
 
 @Component({
@@ -8,7 +9,7 @@ import { McqQuestion, Option } from '../question-types';
 })
 export class QuestionEditorComponent implements OnInit {
 
-  @Input() question!: McqQuestion;
+  @Input() question!: Question;
   @Input() qIndex!: number;
 
   @Output() duplicateQuestion: EventEmitter<number> = new EventEmitter();

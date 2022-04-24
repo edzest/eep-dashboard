@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from 'src/app/shared/models/question';
 import { Section } from 'src/app/shared/models/section';
 import { Test } from 'src/app/shared/models/test';
 import { McqQuestion, Option } from './question-types';
@@ -32,23 +33,24 @@ export class CreateTestComponent implements OnInit {
     ]
   }
 
-  allQuestions: McqQuestion[] = [
-    {
-      'question': 'Ex: What is the capital of India...',
-      'options': [{
-        id: 0,
-        option: 'New Delhi'
-      }],
-      correctOptions: ['New Delhi']
-    }
-  ];
+  // allQuestions: McqQuestion[] = [
+  //   {
+  //     'question': 'Ex: What is the capital of India...',
+  //     'options': [{
+  //       id: 0,
+  //       option: 'New Delhi'
+  //     }],
+  //     correctOptions: ['New Delhi']
+  //   }
+  // ];
 
   currentQIdx: number | undefined | null;
+  currentSectionIdx: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.allQuestions.length == 1) {
+    if (this.test.sections.length == 1 && this.test.sections[0].questions.length == 1) {
       this.currentQIdx = 0;
     }
   }
@@ -59,9 +61,11 @@ export class CreateTestComponent implements OnInit {
    * @param qIndex Question index
    */
   duplicateQuestion(qIndex: number) {
-    const question: McqQuestion = this.allQuestions[qIndex];
-    const questionCopy: McqQuestion = JSON.parse(JSON.stringify(question));
-    this.allQuestions.splice(qIndex+1, 0, questionCopy);
+    if (this.test.sections.length > 0) {
+      const question: Question = this.test.sections[this.currentSectionIdx].questions[qIndex];
+      const questionCopy: Question = JSON.parse(JSON.stringify(question));
+      this.test.sections[this.currentSectionIdx].questions.splice(qIndex+1, 0, questionCopy);
+    }
   }
 
   /**
@@ -69,8 +73,10 @@ export class CreateTestComponent implements OnInit {
    * @param qIndex Question index
    */
   deleteQuestion(qIndex: number) {
-    this.allQuestions.splice(qIndex, 1);
-    this.currentQIdx = null;
+    if (this.test.sections.length > 0) {
+      this.test.sections[this.currentSectionIdx].questions.splice(qIndex, 1);
+      this.currentQIdx = null;
+    }
   }
 
 
@@ -78,8 +84,8 @@ export class CreateTestComponent implements OnInit {
    * Adds a new question to 'allQuestions' array
    */
   addNewQuestion() {
-    const question: McqQuestion = {
-      question: 'What is the capital of India?',
+    const question: Question = {
+      questionTxt: 'What is the capital of India?',
       options: [
         {
           id: 0,
@@ -89,7 +95,7 @@ export class CreateTestComponent implements OnInit {
       correctOptions: ['New Delhi']
     };
 
-    this.allQuestions.push(question);
+    this.test.sections[this.currentSectionIdx].questions.push(question);
     this.currentQIdx = 0;
   }
 

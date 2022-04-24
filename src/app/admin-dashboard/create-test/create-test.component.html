@@ -34,13 +34,13 @@
         </div>
     </div>
     <div class="exam-builder">
-        <div *ngIf="allQuestions.length == 0" class="info-message">
+        <div *ngIf="test.sections[currentSectionIdx].questions.length == 0" class="info-message">
             
             <img src="../../../assets/images/socrates.jpeg" alt="socrates thinking" class="round-medium-image">
             <p>Is it even a test, if it does not have a single question? </p>
             <p>Click <span class="action-text" (click)="addNewQuestion()">here</span> to create one.</p>
         </div>
-        <div *ngFor="let question of allQuestions;let qIndex = index;">
+        <div *ngFor="let question of test.sections[currentSectionIdx].questions;let qIndex = index;">
             <app-question-display 
                 [question]="question" 
                 [qIndex]="qIndex"

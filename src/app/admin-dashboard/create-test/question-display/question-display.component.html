@@ -2,7 +2,7 @@
     <div id="display" *ngIf="!editMode">
         <div>
             <h4>QUESTION {{qIndex + 1}}</h4>
-            <p>{{question.question}}</p>
+            <p>{{question.questionTxt}}</p>
     
             <div *ngFor="let option of question.options" class="options">
                 <mat-icon>

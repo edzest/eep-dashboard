@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { McqQuestion } from '../question-types';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Question } from 'src/app/shared/models/question';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class QuestionDisplayComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  @Input() question!: McqQuestion;
+  @Input() question!: Question;
   @Input() qIndex!: number;
   @Input() currentlyEditingQIdx: number | undefined | null;
 
