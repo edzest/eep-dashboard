@@ -48,6 +48,55 @@
     pointer-events: none;
 }
 
+#sections {
+    border-bottom: 1px solid var(--line);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.all-sections {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+}
+
+.section-tile {
+    background: #f5f5f5;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #f5f5f5;
+    border-radius: var(--radius);
+    justify-content: space-between;
+    min-width: 128px;
+}
+
+.section-tile:hover {
+    border-bottom: 2px solid var(--text);
+}
+
+.add-section-tile {
+    border: 1px dashed #d1d1d1;
+    padding: 8px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.small-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.small-icon:hover {
+    background: #d1d1d1;
+}
+
 .action-text {
     text-decoration: underline dashed;
     cursor: pointer;

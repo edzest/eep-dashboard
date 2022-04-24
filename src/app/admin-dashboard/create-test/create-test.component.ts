@@ -9,6 +9,7 @@ import { McqQuestion, Option } from './question-types';
 export class CreateTestComponent implements OnInit {
 
   examTitle: string = "Untitled Exam";
+  sections: string[] = ["Section 1", "Section 2"];
   allQuestions: McqQuestion[] = [
     {
       'question': 'Ex: What is the capital of India...',
@@ -98,5 +99,15 @@ export class CreateTestComponent implements OnInit {
 
   convertCsvStringToJson(data: string) {
     console.log(data);
+  }
+
+
+  addNewSection() {
+    const sectionName = `Section ${this.sections.length + 1}`;
+    this.sections.push(sectionName);
+  }
+
+  deleteSection(index: number) {
+    this.sections.splice(index, 1);
   }
 }
