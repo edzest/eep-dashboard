@@ -21,6 +21,28 @@
             [qIndex]="qIndex">
         </app-question-editor>
         <hr>
+        <div *ngIf="editMode && editExplanation">
+            <mat-form-field appearance="fill" class="explanation-area">  
+                <mat-label>Explanation</mat-label>
+                <textarea matInput cdkTextareaAutosize rows="4"></textarea>
+            </mat-form-field>
+            <mat-form-field class="tag-list" appearance="fill" class="question-tags-input">
+                <mat-label>Tag</mat-label>
+                <mat-chip-list #chipList aria-label="Question tag selection">
+                  <mat-chip *ngFor="let tag of questionTags" (removed)="remove(tag)">
+                    {{tag}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input placeholder="New tag..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>
+        </div>  
         <div class="footer">
             <div id="footer-actions">
                 <button mat-icon-button aria-label="duplicate" matTooltip="Duplicate">
@@ -33,6 +55,14 @@
                         delete
                     </mat-icon>
                 </button>
+                <button mat-icon-button [matMenuTriggerFor]="question_menu" aria-label="More">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #question_menu="matMenu">
+                    <button mat-menu-item (click)="toggleExplanation()">
+                      <span>{{explanationMenuTxt}}</span>
+                    </button>
+                </mat-menu>   
             </div>
             <div id="correct-answer-container" *ngIf="question.options.length > 0">
                 <mat-form-field appearance="fill">

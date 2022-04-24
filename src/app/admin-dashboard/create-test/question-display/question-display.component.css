@@ -36,3 +36,13 @@
 .container:hover #edit-message {
     opacity: 1;
 }
+
+
+/* Explanation and tags */
+.explanation-area {
+    width: 100%;
+}
+
+.question-tags-input {
+    width: 100%;
+}

@@ -4,6 +4,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { MatCardModule } from '@angular/material/card';
 import { CreateTestComponent } from './create-test/create-test.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -27,6 +29,8 @@ import { QuestionDisplayComponent } from './create-test/question-display/questio
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
+    MatChipsModule,
     MatTooltipModule,
     MatSelectModule,
     FormsModule,
