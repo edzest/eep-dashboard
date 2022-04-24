@@ -80,6 +80,22 @@ export class CreateTestComponent implements OnInit {
     if (files !== null && files !== undefined && files.length > 0) {
       // todo: read file and populate allQuestions
       console.log(files);
+      if (files && files.length > 0) {
+        let file: File = files.item(0);
+        console.log(file.name);
+        console.log(file.size);
+        console.log(file.type);
+        let reader: FileReader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = (e) => {
+          let csv: string = reader.result as string;
+          this.convertCsvStringToJson(csv);
+        }
+      }
     }
+  }
+
+  convertCsvStringToJson(data: string) {
+    console.log(data);
   }
 }
