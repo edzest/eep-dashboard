@@ -8,6 +8,7 @@ import { McqQuestion, Option } from './question-types';
 })
 export class CreateTestComponent implements OnInit {
 
+  examTitle: string = "Untitled Exam";
   allQuestions: McqQuestion[] = [
     {
       'question': 'Ex: What is the capital of India...',

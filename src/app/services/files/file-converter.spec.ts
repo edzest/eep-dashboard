@@ -21,15 +21,4 @@ describe('FileConverter', () => {
   it('should create an instance', () => {
     expect(new FileConverter()).toBeTruthy();
   });
-
-  fit('should return a McqQuestion json when given a file list', () => {
-    const files: FileList = getFileList(mockMcqQuestionCsvData());
-    let file = files.item(0);
-    let reader: FileReader = new FileReader();
-    reader.readAsText(<Blob>file);
-    reader.onload = (e) => {
-      let data: string = reader.result as string;
-      console.log(`data is \n${data}`);
-    }
-  });
 });
