@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Section } from 'src/app/shared/models/section';
+import { Test } from 'src/app/shared/models/test';
 import { McqQuestion, Option } from './question-types';
 
 @Component({
@@ -8,8 +10,28 @@ import { McqQuestion, Option } from './question-types';
 })
 export class CreateTestComponent implements OnInit {
 
-  examTitle: string = "Untitled Exam";
-  sections: string[] = ["Section 1", "Section 2"];
+  test: Test = {
+    testId: "1",
+    title: "Untitled Exam",
+    sections: [
+      {
+        sectionName: "Section 1",
+        questions: [
+          {
+            questionTxt: "Ex: What is the capital of India...",
+            options: [
+              {
+                id: 0,
+                option: 'New Delhi'
+              }
+            ],
+            correctOptions: ['New Delhi']
+          }
+        ]
+      }
+    ]
+  }
+
   allQuestions: McqQuestion[] = [
     {
       'question': 'Ex: What is the capital of India...',
@@ -103,11 +125,14 @@ export class CreateTestComponent implements OnInit {
 
 
   addNewSection() {
-    const sectionName = `Section ${this.sections.length + 1}`;
-    this.sections.push(sectionName);
+    const newSection: Section = {
+      sectionName: "New Section",
+      questions: []
+    }
+    this.test.sections.push(newSection);
   }
 
   deleteSection(index: number) {
-    this.sections.splice(index, 1);
+    this.test.sections.splice(index, 1);
   }
 }

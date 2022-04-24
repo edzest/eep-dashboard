@@ -1,7 +1,9 @@
+import { Option } from "./option";
+
 export interface Question {
     questionTxt: string,
-    options: string[],
-    correctOptions: string[],
+    options: Option[],
+    correctOptions: String[],
     explanation?: string,
     tags?: string
 }

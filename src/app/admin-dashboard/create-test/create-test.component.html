@@ -1,7 +1,7 @@
 <div class="main">
     <div class="header">
         <div class="title">
-            <input type="text" [(ngModel)]="examTitle" class="editable-header">
+            <input type="text" [(ngModel)]="test.title" class="editable-header">
         </div>
         <div class="actions">
             <div class="upload">
@@ -18,8 +18,8 @@
     </div>
     <div id="sections">
         <div class="all-sections">
-            <div class="section-tile" *ngFor="let sectionName of sections; let index = index">
-                <span>{{sectionName}}</span>
+            <div class="section-tile" *ngFor="let section of test.sections; let index = index">
+                <span>{{section.sectionName}}</span>
                 <mat-icon class="small-icon" (click)="deleteSection(index)">
                     clear
                 </mat-icon>
