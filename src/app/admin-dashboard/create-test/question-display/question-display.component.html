@@ -24,12 +24,12 @@
         <div *ngIf="editMode && editExplanation">
             <mat-form-field appearance="fill" class="explanation-area">  
                 <mat-label>Explanation</mat-label>
-                <textarea matInput cdkTextareaAutosize rows="4"></textarea>
+                <textarea matInput cdkTextareaAutosize rows="4" [(ngModel)]="question.explanation"></textarea>
             </mat-form-field>
             <mat-form-field class="tag-list" appearance="fill" class="question-tags-input">
                 <mat-label>Tag</mat-label>
                 <mat-chip-list #chipList aria-label="Question tag selection">
-                  <mat-chip *ngFor="let tag of questionTags" (removed)="remove(tag)">
+                  <mat-chip *ngFor="let tag of question.tags" (removed)="remove(tag)">
                     {{tag}}
                     <button matChipRemove>
                       <mat-icon>cancel</mat-icon>

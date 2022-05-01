@@ -31,13 +31,15 @@ export class QuestionDisplayComponent implements OnInit, OnChanges {
   explanationMenuTxt!: string;
 
 
-  questionTags: string[] = ["agile", "planning"];
-
   ngOnInit(): void {
     if (this.editExplanation) {
       this.explanationMenuTxt = this.hideExplanation;
     } else {
       this.explanationMenuTxt = this.addExplanation;
+    }
+
+    if (!this.question.tags) {
+      this.question.tags = [];
     }
   }
 
@@ -72,7 +74,7 @@ export class QuestionDisplayComponent implements OnInit, OnChanges {
     const tag = (event.value || '').trim();
 
     if (tag) {
-      this.questionTags.push(tag);
+      this.question.tags?.push(tag);
     }
 
     // Clear the input value
@@ -80,10 +82,10 @@ export class QuestionDisplayComponent implements OnInit, OnChanges {
   }
 
   remove(tag: string): void {
-    const index = this.questionTags.indexOf(tag);
+    const index = this.question.tags?.indexOf(tag);
 
-    if (index >= 0) {
-      this.questionTags.splice(index, 1);
+    if (index && index >= 0) {
+      this.question.tags?.splice(index, 1);
     }
   }
 

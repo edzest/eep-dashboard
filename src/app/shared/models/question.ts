@@ -5,5 +5,5 @@ export interface Question {
     options: Option[],
     correctOptions: String[],
     explanation?: string,
-    tags?: string
+    tags?: string[]
 }
