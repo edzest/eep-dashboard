@@ -94,7 +94,9 @@ export class CreateTestComponent implements OnInit {
       ],
       correctOptions: ['New Delhi']
     };
-
+    if (this.test.sections.length == 0) {
+      this.addNewSection();
+    }
     this.test.sections[this.currentSectionIdx].questions.push(question);
     this.currentQIdx = 0;
   }
@@ -136,9 +138,17 @@ export class CreateTestComponent implements OnInit {
       questions: []
     }
     this.test.sections.push(newSection);
+    this.currentSectionIdx = this.test.sections.length - 1;
   }
 
   deleteSection(index: number) {
     this.test.sections.splice(index, 1);
+    if (index < this.currentSectionIdx) {
+      this.currentSectionIdx--;
+    }
+  }
+
+  onSectionClick(sectionIndex: number) {
+    this.currentSectionIdx = sectionIndex;
   }
 }

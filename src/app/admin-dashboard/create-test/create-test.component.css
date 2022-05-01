@@ -49,11 +49,11 @@
 }
 
 #sections {
-    border-bottom: 1px solid var(--line);
     padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     gap: 12px;
+    border-bottom: 1px solid var(--line);
 }
 
 .all-sections {
@@ -71,9 +71,14 @@
     border-radius: var(--radius);
     justify-content: space-between;
     min-width: 128px;
+    cursor: pointer;
 }
 
 .section-tile:hover {
+    border-bottom: 2px solid var(--text);
+}
+
+.section-tile-w-border {
     border-bottom: 2px solid var(--text);
 }
 
@@ -95,6 +100,24 @@
 
 .small-icon:hover {
     background: #d1d1d1;
+    cursor: initial;
+}
+
+#currentSection {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+#currentSection input {
+    font-size: small;
+    padding: 12px;
+}
+
+#currentSection input {
+    width: auto;
 }
 
 .action-text {
