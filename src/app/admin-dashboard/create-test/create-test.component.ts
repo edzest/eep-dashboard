@@ -151,4 +151,9 @@ export class CreateTestComponent implements OnInit {
   onSectionClick(sectionIndex: number) {
     this.currentSectionIdx = sectionIndex;
   }
+
+
+  saveTest() {
+    console.log(this.test);
+  }
 }
