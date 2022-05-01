@@ -84,21 +84,23 @@ export class CreateTestComponent implements OnInit {
    * Adds a new question to 'allQuestions' array
    */
   addNewQuestion() {
-    const question: Question = {
-      questionTxt: 'What is the capital of India?',
-      options: [
-        {
-          id: 0,
-          option: 'New Delhi'
-        },
-      ],
-      correctOptions: ['New Delhi']
-    };
     if (this.test.sections.length == 0) {
       this.addNewSection();
+    } else {
+      const question: Question = {
+        questionTxt: 'What is the capital of India?',
+        options: [
+          {
+            id: 0,
+            option: 'New Delhi'
+          },
+        ],
+        correctOptions: ['New Delhi']
+      };
+      this.test.sections[this.currentSectionIdx].questions.push(question);
+      this.currentQIdx = 0;
     }
-    this.test.sections[this.currentSectionIdx].questions.push(question);
-    this.currentQIdx = 0;
+    
   }
 
 
@@ -135,7 +137,22 @@ export class CreateTestComponent implements OnInit {
   addNewSection() {
     const newSection: Section = {
       sectionName: "New Section",
-      questions: []
+      questions: [{
+        questionTxt: "What is the capital of Maharashtra?",
+        options: [
+          {
+            id: 1,
+            option: "Pune"
+          },{
+            id: 2,
+            option: "Mumbai"
+          },{
+            id: 3,
+            option: "Nagpur"
+          }
+        ],
+        correctOptions: ["Mumbai"]
+      }]
     }
     this.test.sections.push(newSection);
     this.currentSectionIdx = this.test.sections.length - 1;
